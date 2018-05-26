@@ -3,10 +3,10 @@ import time
 import sys
 
 #Speed per PARIS protocol
-WPM = 20
+WPM = 60
 
 #Base compensated speed
-Base = 20*2
+Base = WPM*1.9
 
 #Calculate dits, dahs, words
 ditSpeed = 2.4/Base
