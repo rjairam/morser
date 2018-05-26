@@ -3,7 +3,7 @@ import time
 import sys
 
 #Speed per PARIS protocol
-WPM = 60
+WPM = 20
 
 #Base compensated speed
 Base = WPM*1.9
