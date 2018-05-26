@@ -4,11 +4,19 @@ import sys
 
 #Speed per PARIS protocol
 WPM = 20
-ditSpeed = 2.4/WPM
+
+#Base compensated speed
+Base = 20*2
+
+#Calculate dits, dahs, words
+ditSpeed = 2.4/Base
 dahSpeed = ditSpeed*3
 wordSpeed = ditSpeed*7
+
+#Output pin
 spkrpin = 18
 
+#Store Morse in an array
 CODE = {' ': ' ', 
         "'": '.----.', 
         '(': '-.--.-', 
@@ -58,13 +66,13 @@ CODE = {' ': ' ',
         'Z': '--..', 
         '_': '..--.-'}
 
-
+#GPIO setup
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(spkrpin,GPIO.OUT)
 
+#dits
 def dit():
-    ditSpeed=2.4/WPM
     t_end = time.time() + ditSpeed
     while time.time() < t_end:
        	GPIO.output(spkrpin,0)
@@ -73,7 +81,7 @@ def dit():
     	time.sleep(.0004)
     time.sleep(ditSpeed)
 
-
+#dahs
 def dah():
     t_end = time.time() + dahSpeed
     while time.time() < t_end:
@@ -84,25 +92,29 @@ def dah():
     time.sleep(ditSpeed)
 	
 
-
+#Play the word in morse
 def playword( str ):
-	print str
-	for letter in str:
-			for symbol in CODE[letter.upper()]:
-				print symbol
+    for letter in str:
+    	        for symbol in CODE[letter.upper()]:
 				if symbol == '-':
 					dah()
 				elif symbol == '.':
 					dit()
 				else:
 					time.sleep(ditSpeed)
-			time.sleep(ditSpeed)
+		time.sleep(ditSpeed)
+	        
+		sys.stdout.write(letter)	
+		sys.stdout.flush()
 
 
 args = len(sys.argv) - 1
 
+#Loop through command line args and play each word
 pos = 1  
 while (args >= pos):  
     playword(sys.argv[pos])
     pos = pos + 1
+    sys.stdout.write(' ')
+    sys.stdout.flush()
     time.sleep (wordSpeed)
