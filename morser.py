@@ -2,7 +2,13 @@ import RPi.GPIO as GPIO
 import time
 import sys
 
-speed=0.25
+#Speed per PARIS protocol
+WPM = 20
+ditSpeed = 2.4/WPM
+dahSpeed = ditSpeed*3
+wordSpeed = ditSpeed*7
+spkrpin = 18
+
 CODE = {' ': ' ', 
         "'": '.----.', 
         '(': '-.--.-', 
@@ -55,26 +61,27 @@ CODE = {' ': ' ',
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(18,GPIO.OUT)
+GPIO.setup(spkrpin,GPIO.OUT)
 
 def dit():
-    t_end = time.time() + speed*0.25
+    ditSpeed=2.4/WPM
+    t_end = time.time() + ditSpeed
     while time.time() < t_end:
-       	GPIO.output(18,0)
+       	GPIO.output(spkrpin,0)
        	time.sleep(.0004)
-       	GPIO.output(18,1)
+       	GPIO.output(spkrpin,1)
     	time.sleep(.0004)
-    time.sleep(0.125)
+    time.sleep(ditSpeed)
 
 
 def dah():
-    t_end = time.time() + speed
+    t_end = time.time() + dahSpeed
     while time.time() < t_end:
-       	GPIO.output(18,0)
+       	GPIO.output(spkrpin,0)
        	time.sleep(.0004)
-       	GPIO.output(18,1)
+       	GPIO.output(spkrpin,1)
     	time.sleep(.0004)
-    time.sleep(0.175)
+    time.sleep(ditSpeed)
 	
 
 
@@ -88,8 +95,8 @@ def playword( str ):
 				elif symbol == '.':
 					dit()
 				else:
-					time.sleep(0.25)
-			time.sleep(0.25)
+					time.sleep(ditSpeed)
+			time.sleep(ditSpeed)
 
 
 args = len(sys.argv) - 1
@@ -98,4 +105,4 @@ pos = 1
 while (args >= pos):  
     playword(sys.argv[pos])
     pos = pos + 1
-    time.sleep (0.1)
+    time.sleep (wordSpeed)
