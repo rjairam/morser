@@ -14,7 +14,7 @@ How to use
 For example, play back your IP address of eth0 in morse:
 python morser.py `ifconfig eth0 2>/dev/null|awk '/inet addr:/ {print $2}'|sed 's/addr://'`
 
-##LICENSE
+LICENSE
 Freeware, with attribution. Please do let me know when/where you use it. I'm good in QRZ. (n2rj@arrl.net)
 
 Have fun!
