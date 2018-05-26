@@ -64,7 +64,7 @@ def dit():
        	time.sleep(.0004)
        	GPIO.output(18,1)
     	time.sleep(.0004)
-    time.sleep(0.25)
+    time.sleep(0.125)
 
 
 def dah():
@@ -74,12 +74,13 @@ def dah():
        	time.sleep(.0004)
        	GPIO.output(18,1)
     	time.sleep(.0004)
-    time.sleep(0.25)
+    time.sleep(0.175)
 	
 
 
 def playword( str ):
-	for letter in "10.25.234.254":
+	print str
+	for letter in str:
 			for symbol in CODE[letter.upper()]:
 				print symbol
 				if symbol == '-':
@@ -95,6 +96,6 @@ args = len(sys.argv) - 1
 
 pos = 1  
 while (args >= pos):  
-    playword(args)
+    playword(sys.argv[pos])
     pos = pos + 1
     time.sleep (0.1)
