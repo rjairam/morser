@@ -122,14 +122,13 @@ def main():
     			sys.stdout.flush()
     			time.sleep (wordSpacing)
 		print
-		GPIO.cleanup()
 
 	except KeyboardInterrupt:
 		print
        		print ("Caught interrupt, exiting...")
-	        GPIO.cleanup()
 	except:
 		print
 		print ("Fatal error, exiting...")
+	finally:
 		GPIO.cleanup()
 main()
