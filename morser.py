@@ -9,14 +9,14 @@ WPM = 20
 Base = WPM*1.9
 
 #Calculate dits, dahs, words
-ditSpeed = 2.4/Base
-dahSpeed = ditSpeed*3
-wordSpeed = ditSpeed*7
+ditLength = 2.4/Base
+dahLength = ditLength*3
+wordSpacing = ditLength*7
 
 #Output pin
 spkrpin = 18
 
-#Store Morse in an array
+#Morse characters
 CODE = {' ': ' ', 
         "'": '.----.', 
         '(': '-.--.-', 
@@ -71,25 +71,27 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(spkrpin,GPIO.OUT)
 
+time.sleep(1)
+
 #dits
 def dit():
-    t_end = time.time() + ditSpeed
+    t_end = time.time() + ditLength
     while time.time() < t_end:
        	GPIO.output(spkrpin,0)
-       	time.sleep(.0004)
+       	time.sleep(.0005)
        	GPIO.output(spkrpin,1)
-    	time.sleep(.0004)
-    time.sleep(ditSpeed)
+    	time.sleep(.0005)
+    time.sleep(ditLength)
 
 #dahs
 def dah():
-    t_end = time.time() + dahSpeed
+    t_end = time.time() + dahLength
     while time.time() < t_end:
        	GPIO.output(spkrpin,0)
-       	time.sleep(.0004)
+       	time.sleep(.0005)
        	GPIO.output(spkrpin,1)
-    	time.sleep(.0004)
-    time.sleep(ditSpeed)
+    	time.sleep(.0005)
+    time.sleep(ditLength)
 	
 
 #Play the word in morse
@@ -101,8 +103,8 @@ def playword( str ):
 				elif symbol == '.':
 					dit()
 				else:
-					time.sleep(ditSpeed)
-		time.sleep(ditSpeed)
+					time.sleep(ditLength)
+		time.sleep(ditLength)
 	        
 		sys.stdout.write(letter)	
 		sys.stdout.flush()
@@ -117,4 +119,4 @@ while (args >= pos):
     pos = pos + 1
     sys.stdout.write(' ')
     sys.stdout.flush()
-    time.sleep (wordSpeed)
+    time.sleep (wordSpacing)
