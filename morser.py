@@ -109,16 +109,27 @@ def playword( str ):
 		sys.stdout.write(letter)	
 		sys.stdout.flush()
 
-try:
-	args = len(sys.argv) - 1
+#Main loop
+def main():
+	try:
+		args = len(sys.argv) - 1
 
-	pos = 1  
-	while (args >= pos):  
-    		playword(sys.argv[pos])
-    		pos = pos + 1
-    		sys.stdout.write(' ')
-    		sys.stdout.flush()
-    		time.sleep (wordSpacing)
-except KeyboardInterrupt:
-        print ("Caught interrupt, exiting...")
-	GPIO.output(spkrpin,0)
+		pos = 1  
+		while (args >= pos):  
+    			playword(sys.argv[pos])
+    			pos = pos + 1
+    			sys.stdout.write(' ')
+    			sys.stdout.flush()
+    			time.sleep (wordSpacing)
+		print
+		GPIO.cleanup()
+
+	except KeyboardInterrupt:
+		print
+       		print ("Caught interrupt, exiting...")
+	        GPIO.cleanup()
+	except:
+		print
+		print ("Fatal error, exiting...")
+		GPIO.cleanup()
+main()
