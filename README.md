@@ -8,7 +8,7 @@ v 0.3 Alpha known issues
 - GPIO access requires elevated privilege. Run it using sudo or run as root.
 
 How to use:
-- Attach a passive piezo buzzer to pin 18 and ground. (you can change pin) Speakers may work, but you may need a driver circuit.
+- Attach a passive piezo buzzer to pin 18 and ground. (you can change pin) Moving coil speakers may work, but you may need a driver circuit. I have used one with a 220uF cap in series.
 
 ```python morser.py <whatever text you want to hear in morse code>```
 
