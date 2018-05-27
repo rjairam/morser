@@ -109,14 +109,16 @@ def playword( str ):
 		sys.stdout.write(letter)	
 		sys.stdout.flush()
 
+try:
+	args = len(sys.argv) - 1
 
-args = len(sys.argv) - 1
-
-#Loop through command line args and play each word
-pos = 1  
-while (args >= pos):  
-    playword(sys.argv[pos])
-    pos = pos + 1
-    sys.stdout.write(' ')
-    sys.stdout.flush()
-    time.sleep (wordSpacing)
+	pos = 1  
+	while (args >= pos):  
+    		playword(sys.argv[pos])
+    		pos = pos + 1
+    		sys.stdout.write(' ')
+    		sys.stdout.flush()
+    		time.sleep (wordSpacing)
+except KeyboardInterrupt:
+        print ("Caught interrupt, exiting...")
+	GPIO.output(spkrpin,0)
