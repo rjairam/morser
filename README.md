@@ -11,7 +11,7 @@ How to use:
 - Attach a passive piezo buzzer to pin 18 and ground. (you can change the output pin in the code) Moving coil speakers may work, but you may need a driver circuit. I have used one with a 220uF cap in series. 
 
 Ideas here:
-https://raspberrypi.stackexchange.com/questions/47324/hooking-up-a-speaker-to-the-gpio?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+https://raspberrypi.stackexchange.com/questions/47324/hooking-up-a-speaker-to-the-gpio
 
 To send morse, type:
 ```python morser.py <whatever text you want to hear in morse code>```
