@@ -1,3 +1,8 @@
+# Morser - a simple morse code command line utility
+# Ria Jairam, N2RJ
+# n2rj@arrl.net
+
+
 import RPi.GPIO as GPIO
 import time
 import sys
@@ -13,7 +18,7 @@ ditLength = 2.4/Base
 dahLength = ditLength*3
 wordSpacing = ditLength*7
 
-#Output pin
+#Output pin. Layout is BOARD not BCM
 spkrpin = 18
 
 #Morse characters
@@ -73,7 +78,7 @@ GPIO.setup(spkrpin,GPIO.OUT)
 
 time.sleep(1)
 
-#dits
+# Play a dit
 def dit():
     t_end = time.time() + ditLength
     while time.time() < t_end:
@@ -83,7 +88,7 @@ def dit():
     	time.sleep(.0005)
     time.sleep(ditLength)
 
-#dahs
+# Play a dah
 def dah():
     t_end = time.time() + dahLength
     while time.time() < t_end:
@@ -94,7 +99,7 @@ def dah():
     time.sleep(ditLength)
 	
 
-#Play the word in morse
+# Play a word in morse
 def playword( str ):
     for letter in str:
     	        for symbol in CODE[letter.upper()]:
@@ -109,7 +114,7 @@ def playword( str ):
 		sys.stdout.write(letter)	
 		sys.stdout.flush()
 
-#Main loop
+# Main - take each parameter (word) then play back each word char by char.
 def main():
 	try:
 		args = len(sys.argv) - 1
@@ -130,5 +135,6 @@ def main():
 		print
 		print ("Fatal error, exiting...")
 	finally:
+		#Waht to make sure GPIO is clean when done!
 		GPIO.cleanup()
 main()
