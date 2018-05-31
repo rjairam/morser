@@ -1,4 +1,4 @@
-#CREDITS
+# Credits
 
 First of all, thanks to Michael, VA3MW for the idea.
 
