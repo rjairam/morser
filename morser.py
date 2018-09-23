@@ -76,6 +76,7 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(spkrpin,GPIO.OUT)
 
+#Some weird reason, need a delay after initializing GPIO.
 time.sleep(1)
 
 # Play a dit
@@ -114,7 +115,7 @@ def playword( str ):
 		sys.stdout.write(letter)	
 		sys.stdout.flush()
 
-# Main - take each parameter (word) then play back each word char by char.
+# Main - take each parameter (word) then play back each word char by char. Write letter by letter to stdio
 def main():
 	try:
 		args = len(sys.argv) - 1
@@ -135,6 +136,6 @@ def main():
 		print
 		print ("Fatal error, exiting...")
 	finally:
-		#Waht to make sure GPIO is clean when done!
+		#Ensure GPIO is cleaned up when done
 		GPIO.cleanup()
 main()
