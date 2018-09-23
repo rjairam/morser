@@ -5,7 +5,7 @@ A really simple utility to take text from the command line and play it through a
 v 0.3 Alpha known issues
 - Speed is variable. Change "WPM" variable.
 - Morse beep is slightly higher pitched when starting. Could be due to GPIO timing and/or loading.
-- GPIO access requires elevated privilege. Run it using sudo or run as root.
+- If GPIO access requires elevated privilege, run it using sudo or run as root. (I think it works fine as a regular pi user
 
 How to use:
 - Attach a passive piezo buzzer to pin 18 and ground. (you can change the output pin in the code) Moving coil speakers may work, but you may need a driver circuit. I have used one with a 220uF cap in series. 
