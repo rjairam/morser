@@ -22,7 +22,7 @@ For example, play back your IP address of eth0 in morse:
 
 LICENSE:
 
-Freeware, with attribution. Please do let me know when/where you use it. I'm good in QRZ. (n2rj@arrl.net)
+Licensed under the [MIT License](LICENSE.md). Please do let me know when/where you use it. I'm good in QRZ. (n2rj@arrl.net)
 
 Have fun!
 
